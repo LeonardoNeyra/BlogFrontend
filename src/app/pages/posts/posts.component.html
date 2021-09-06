@@ -1,0 +1,12 @@
+<div class="p-2" *ngFor="let post of postsItems">
+    <app-post 
+        [titulo]='post.titulo'
+        [cuerpo]='post.cuerpo'
+        [autor]='post.autor'
+        [fecha]='post.fecha'
+        [n_comentarios]='post.comentarios'
+        [n_favoritos]='post.favoritos'
+        [tags]='post.tags'
+    ></app-post>
+</div>
+<div class="p-4"></div>
