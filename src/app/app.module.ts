@@ -13,6 +13,7 @@ import { JumbotronComponent } from './component/jumbotron/jumbotron.component';
 import { PostComponent } from './component/post/post.component';
 import { NopagefoundComponent } from './pages/nopagefound/nopagefound.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { PagesComponent } from './pages/pages.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { RegisterComponent } from './auth/register/register.component';
     PostComponent,
     NopagefoundComponent,
     RegisterComponent,
+    PagesComponent,
   ],
   imports: [
     BrowserModule,
