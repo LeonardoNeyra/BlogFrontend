@@ -6,6 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title:string = 'The King Team';
-  subtitle:string = 'Somos de 2° de secundaria. Te ayudaremos en tus tareas. Comparte el blog :D';
+
 }
