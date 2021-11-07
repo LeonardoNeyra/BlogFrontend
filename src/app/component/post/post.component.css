@@ -11,25 +11,25 @@
 
 @media screen and (max-width: 360px) {
     .blog-container {
-        width: 15rem;
+        width: 90%;
     }
 }
 
 @media screen and (min-width: 480px) {
     .blog-container {
-      width: 30rem;
+      width: 90%;
     }
 }
 
 @media screen and (min-width: 767px) {
     .blog-container {
-      width: 70rem;
+      width: 90%;
     }
 }
 
 @media screen and (min-width: 959px) {
     .blog-container {
-      width: 90rem;
+      width: 90%;
     }
 }
 
