@@ -7,6 +7,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { LoginForm } from '../interfaces/login-form.interface';
 import { RegisterForm } from '../interfaces/register-form.interface';
+import { Usuario } from '../models/usuario.model';
 
 const base_url = environment.base_url;
 declare const gapi: any;
@@ -16,12 +17,27 @@ declare const gapi: any;
 })
 export class UsuarioService {
 
+  /*
+  * Parametros & Constructor
+  */
   public auth2: any;
+  public usuario: Usuario;
 
   constructor( private http: HttpClient, private router: Router, private ngZone: NgZone ) {
     this.googleInit();
    }
 
+   get token(): string {
+     return localStorage.getItem('token') || '';
+   }
+
+   get uid(): string {
+     return this.usuario.uid || '';
+   }
+
+   /*
+   *  Funciones
+   */
   googleInit() {
 
     return new Promise<void>( resolve => {
@@ -52,17 +68,20 @@ export class UsuarioService {
 
   // Renovar token
   valirToken(): Observable<boolean> {
-    const token = localStorage.getItem('token') || '';
 
     return this.http.get(`${base_url}/login/renew`, {
       headers: {
-        'x-token': token
+        'x-token': this.token
       }
     }).pipe(
-      tap( (resp: any) => {
+      map( (resp: any) => {
+        const { activo, alias, email, fechaCrea, google, img = '', nombre, rol, uid } = resp.usuario;
+
+        this.usuario = new Usuario( nombre, alias, email, google, rol, activo, fechaCrea, '', img, uid );
         localStorage.setItem('token', resp.token);
+
+        return true;
       }),
-      map( resp => true ),
       catchError( err => of(false) )
     );
   }
@@ -105,4 +124,21 @@ export class UsuarioService {
                 })
               );
   }
+
+  // actualizar usuario (perfil)
+  actualizarPerfil( data: { email: string, nombre: string, alias: string, rol: string } ) {
+
+    data = {
+      ...data,
+      rol: this.usuario.rol
+    }
+    
+    return this.http.put(`${base_url}/usuarios/${this.uid}`, data, {
+      headers: {
+        'x-token': this.token
+      }
+    });
+
+  }
+
 }

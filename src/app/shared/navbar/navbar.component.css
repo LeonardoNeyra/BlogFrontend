@@ -1,11 +1,3 @@
-.content {
-  width: 94%;
-  margin: 4em auto;
-  font-size: 20px;
-  line-height: 30px;
-  text-align: justify;
-}
-
 .logo {
   line-height: 60px;
   position: fixed;
@@ -22,10 +14,10 @@ nav {
   position: fixed;
   width: 100%;
   line-height: 60px;
-  z-index: 100;
+  z-index: 200;
 }
 
-nav ul {
+.ulist {
   line-height: 60px;
   list-style: none;
   background: rgba(0, 0, 0, 0);
@@ -38,29 +30,86 @@ nav ul {
   transition: 1s;
 }
 
-nav.black ul {
-  background: #fff;
-  color:#000;
-  box-shadow: 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+a.a-list {
+  position: relative;
+  padding: 12px 36px;
+  margin: 10px 0px;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  border-radius: 0.25rem;
 }
 
-nav.black ul li a {
-  color:#000;
-}
-
-nav.black .logo {
-  color:#000;
-}
-
-nav ul li {
+.list-item {
   display: inline-block;
   padding: 16px 20px;;
 }
 
-nav ul li a {
+.list-item-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  transition: ease-in;
+}
+
+.dropdown-content {
+  visibility: hidden;
+  position: fixed;
+  background-color: #f9f9f93f;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 210;
+  right: 1%;
+  transition: all 0.3s;
+}
+
+.list-item-dropdown:hover .dropdown-content {
+  visibility: visible;
+}
+
+.ml-3 {
+  margin-left: 10px;
+}
+
+.ta-l {
+  text-align: left;
+  line-height: 40px;
+}
+
+.a-list {
   text-decoration: none;
   color: #fff;
   font-size: 16px;
+}
+
+a.a-dropdown {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+h5, p {
+  color: #fff;
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
 }
 
 .menu-icon {
@@ -75,6 +124,42 @@ nav ul li a {
   display: none;
 }
 
+/*
+**********************************************************************
+------------------------White when scroll down------------------------
+**********************************************************************
+*/
+nav.black ul.ulist {
+  background: #fff;
+  color:#000;
+  box-shadow: 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+}
+
+nav.black ul.ulist li a.a-list {
+  color:#000;
+}
+
+nav.black .logo {
+  color:#000;
+}
+
+nav.black .dropdown-content {
+  background: #fff;
+}
+
+nav.black .dropdown-content .a-dropdown {
+  color:#000;
+}
+
+nav.black h5, nav.black p {
+  color:#000;
+}
+
+/*
+**********************************************************************
+-----------------------------Media Query------------------------------
+**********************************************************************
+*/
 @media(max-width: 786px) {
 
   .logo {
@@ -83,18 +168,18 @@ nav ul li a {
     margin-top: 16px;
   }
 
-  nav ul {
+  .ulist {
     max-height: 0px;
     background: #000;
   }
 
-  nav.black ul {
+  nav.black ul.ulist {
     background: #fff;
     color:#000;
     box-shadow: 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
   }
   
-  nav.black ul li a {
+  nav.black ul.ulist li a.a-list {
     color:#000;
   }
 
@@ -102,11 +187,15 @@ nav ul li a {
     color:#000;
   }
   
+  nav.black .dropdown-content {
+    background: #fff;
+  }
+
   .showing {
     max-height: 34em !important;
   }
 
-  nav ul li {
+  .list-item {
     box-sizing: border-box;
     width: 100%;
     padding: 24px;
@@ -120,38 +209,31 @@ nav ul li a {
 }
 
 /*
+**********************************************************************
+-----------------------------Click effect-----------------------------
+**********************************************************************
+*/
+/* Not work */
+
+/*
 * https://codepen.io/BretCameron/pen/mdPMVaW
 * https://www.youtube.com/watch?v=ueyRcYEmsrI&ab_channel=OnlineTutorials
 */
 
-a {
-  /* position: relative;
-  overflow: hidden;
-  transition: background 400ms;
-  color: #fff;
-  background-color: #6200ee;
-  padding: 1rem 2rem;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.5rem;
-  outline: 0;
-  border: 0;
-  border-radius: 0.25rem;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3); 
-  cursor: pointer; */
+span.user-name {
   position: relative;
-  /* display: inline-block; */
-  padding: 12px 36px;
   margin: 10px 0px;
-  /* color: rgb(66, 216, 29); */
+  padding: 5px 10px 5px 0px;
+  background-color: rgba(0, 0, 255, 0.103);
   text-decoration: none;
   text-transform: uppercase;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 16px;
   letter-spacing: 2px;
   border-radius: 0.25rem;
 }
 
-span {
+span.click-effect {
   position: absolute;
   background: #000;
   transform: translate(-50%, -50%);
@@ -185,9 +267,6 @@ span {
     opacity: 0;
   }
 }
-/* @keyframes ripple {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
-} */
+
+/* Adicional */
+/* https://codepen.io/anitaparmar26/pen/mdExWPZ?editors=1100 */

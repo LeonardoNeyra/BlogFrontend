@@ -6,6 +6,7 @@ import { PostsComponent } from './posts/posts.component';
 import { AboutComponent } from './about/about.component';
 import { PostComponent } from './post/post.component';
 import { CudComponent } from './cud/cud.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
           { path: 'about',  component: AboutComponent, data: { titulo: 'Nosotros' } },
           { path: 'home/posts', component: PostComponent },
           { path: 'dashboard', component: CudComponent },
+          { path: 'perfil', component: PerfilComponent, data: { titulo: 'Perfil'} },
           { path: '', redirectTo: '/home', pathMatch: 'full' },
         ]
     }

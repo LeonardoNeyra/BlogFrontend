@@ -9,6 +9,8 @@ import { PagesComponent } from './pages.component';
 import { PostComponent } from '../component/post/post.component';
 import { JumbotronComponent } from '../component/jumbotron/jumbotron.component';
 import { SharedModule } from '../shared/shared.module';
+import { PerfilComponent } from './perfil/perfil.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +21,8 @@ import { SharedModule } from '../shared/shared.module';
     AboutComponent,
     JumbotronComponent,
     PostComponent,
-    PagesComponent
+    PagesComponent,
+    PerfilComponent
   ],
   exports: [
     CudComponent,
@@ -31,7 +34,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ]
 })
 export class PagesModule { }
