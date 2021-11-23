@@ -28,7 +28,7 @@
               <img [src]="usuario.imagenUrl" class="rounded-circle" width="45" height="45" alt="Perfil">
             </div>
             <div class="ml-3 lh-1">
-              <h5 class="mb-0">{{ usuario.nombre.split(' ')[0] + ' ' + usuario.nombre.split(' ')[1] }}</h5>
+              <h5 class="mb-0">{{ usuario.nombre.split(' ')[0] + ' ' + (usuario.nombre.split(' ')[1] || '') }}</h5>
               <p class="mb-0">{{ usuario.email | slice:0:20 }}{{ (usuario.email.length > 20 ? '...' : '') }}</p>
             </div>
           </div>
