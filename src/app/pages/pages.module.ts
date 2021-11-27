@@ -11,6 +11,7 @@ import { JumbotronComponent } from '../component/jumbotron/jumbotron.component';
 import { SharedModule } from '../shared/shared.module';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UsuariosComponent } from './mantenedores/usuarios/usuarios.component';
 
 
 
@@ -22,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     JumbotronComponent,
     PostComponent,
     PagesComponent,
-    PerfilComponent
+    PerfilComponent,
+    UsuariosComponent
   ],
   exports: [
     CudComponent,

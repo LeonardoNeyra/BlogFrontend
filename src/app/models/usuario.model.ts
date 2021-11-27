@@ -18,15 +18,19 @@ export class Usuario {
     ) { }
 
     get imagenUrl() {
+        // Sin imagen
+        if (!this.img) {
+            return `${base_url}/upload/usuarios/noimage`;
+        }
         // Google API
-        if (this.img.includes('http')) {
+        else if (this.img.includes('http')) { 
             return this.img;
         }
-
         // API: /upload/usuarios/8296ea1a-a263-449e-97e6-24aa70f58d58.jpg
-        if (this.img) {
+        else if (this.img) {
             return `${base_url}/upload/usuarios/${this.img}`;
         }
+        // No imagen
         else {
             return `${base_url}/upload/usuarios/noimage`;
         }

@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
+import { CargarUsuario } from '../interfaces/cargar-usuarios.interface';
 import { LoginForm } from '../interfaces/login-form.interface';
 import { RegisterForm } from '../interfaces/register-form.interface';
 import { Usuario } from '../models/usuario.model';
@@ -33,6 +34,14 @@ export class UsuarioService {
 
    get uid(): string {
      return this.usuario.uid || '';
+   }
+
+   get headers() {
+     return {
+       headers: {
+         'x-token': this.token
+       }
+     }
    }
 
    /*
@@ -125,7 +134,7 @@ export class UsuarioService {
               );
   }
 
-  // actualizar usuario (perfil)
+  // Actualizar usuario (perfil)
   actualizarPerfil( data: { email: string, nombre: string, alias: string, rol: string } ) {
 
     data = {
@@ -141,4 +150,21 @@ export class UsuarioService {
 
   }
 
+  // Cargar usuarios
+  cargarUsuarios( desde: number = 0 ) {
+    const url = `${base_url}/usuarios?desde=${desde}`
+
+    return this.http.get<CargarUsuario>(url, this.headers)
+      .pipe(
+        map( resp => {
+          const usuarios = resp.usuarios
+            .map(user => new Usuario(user.nombre, user.alias, user.email, user.google, '', true, user.fechaCrea, '', user.img, user.uid));
+          
+          return {
+            total: resp.total,
+            usuarios
+          };
+        })
+      )
+  }
 }
