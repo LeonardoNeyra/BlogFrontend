@@ -3,13 +3,13 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <input type="text" class="form-control" placeholder="Buscar usuarios...">
+                    <input type="text" class="form-control" placeholder="Buscar usuarios..." #txtTermino (keyup)="buscar(txtTermino.value)">
                 </div>
             </div>
         </div>
     </div>
     
-    <div class="row animated fadeIn">
+    <div class="row animated fadeIn" *ngIf="isLoaded">
         <div class="col-12">
             <div class="alert alert-info text-center" role="alert">
               <h4 class="alert-heading">Cargando</h4>
@@ -19,7 +19,7 @@
         </div>
     </div>
     
-    <div class="row animated fadeIn">
+    <div class="row animated fadeIn"  *ngIf="!isLoaded">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
@@ -33,7 +33,7 @@
                                     <th>Correo</th>
                                     <th>Nombre</th>
                                     <th>Alias</th>
-                                    <th class="w100">Role</th>
+                                    <th class="w140">Role</th>
                                     <th class="w100">Auth</th>
                                     <th class="text-nowrap w100">Acciones</th>
                                 </tr>
@@ -41,20 +41,18 @@
                             <tbody>
                                 <tr *ngFor="let usuario of usuarios">
                                     <td class="text-center">
-                                        <img [src]="usuario.imagenUrl" alt="Avatar de usuario" class="avatar cursor" >
-                                        <!-- (click)="abrirModal(usuario)" -->
+                                        <img [src]="usuario.imagenUrl" alt="Avatar de usuario" class="avatar cursor" (click)="abrirModal(usuario)">
                                     </td>
                                     <td>{{ usuario.email }}</td>
                                     <td>{{ usuario.nombre }}</td>
                                     <td>{{ usuario.alias }}</td>
     
-                                    <td>ROL
-                                        <!-- <select class="form-control"
-                                                [(ngModel)]="usuario.role"
-                                                (change)="cambiarRole( usuario )">
+                                    <td>
+                                        <!-- {{ usuario.rol }} -->
+                                        <select class="form-select form-select-sm" [(ngModel)]="usuario.rol" (change)="cambiarRol(usuario)">
                                             <option value="ADMIN_ROLE">Admin</option>
-                                            <option value="USER_ROLE">User</option>
-                                        </select> -->
+                                            <option value="USER_ROL">User</option>
+                                        </select>
                                     </td>
     
                                     <td>
@@ -62,13 +60,10 @@
                                         <span *ngIf="!usuario.google" class="label label-info">Email</span>    
                                     </td>
     
-                                    <td class="text-nowrap text-center">aver
-                                        <!-- <a data-toggle="tooltip" 
-                                            data-original-title="Borrar"
-                                            class="cursor"
-                                            (click)="eliminarUsuario(usuario)">
+                                    <td class="text-nowrap text-center">
+                                        <a data-toggle="tooltip" data-original-title="Borrar" class="cursor" (click)="eliminar(usuario)">
                                             <i class="fa fa-close text-danger"></i> 
-                                        </a> -->
+                                        </a>
                                     </td>
                                 </tr>
                                 
@@ -80,11 +75,11 @@
                         <p>Mostrando registros del {{paginacionDesde + 1}} al {{paginacionHasta}} de un total de {{totalUsuarios}}. </p>
                     </div>
     
-                    <button (click)="cambiarPagina(-5)" class="btn btn-secondary">Anteriores</button>
-                    &nbsp;
-                    <button (click)="cambiarPagina(5)" class="btn btn-secondary">Siguientes</button>
-                    <!-- <div *ngIf="txtTermino.value.length === 0">
-                    </div> -->
+                    <div *ngIf="txtTermino.value.length === 0">
+                        <button (click)="cambiarPagina(-5)" class="btn btn-secondary">Anteriores</button>
+                        &nbsp;
+                        <button (click)="cambiarPagina(5)" class="btn btn-secondary">Siguientes</button>
+                    </div>
     
                 </div>
             </div>

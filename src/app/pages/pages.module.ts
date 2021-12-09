@@ -10,8 +10,9 @@ import { PostComponent } from '../component/post/post.component';
 import { JumbotronComponent } from '../component/jumbotron/jumbotron.component';
 import { SharedModule } from '../shared/shared.module';
 import { PerfilComponent } from './perfil/perfil.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsuariosComponent } from './mantenedores/usuarios/usuarios.component';
+import { ModalImagenComponent } from '../component/modal-imagen/modal-imagen.component';
 
 
 
@@ -21,6 +22,7 @@ import { UsuariosComponent } from './mantenedores/usuarios/usuarios.component';
     PostsComponent,
     AboutComponent,
     JumbotronComponent,
+    ModalImagenComponent,
     PostComponent,
     PagesComponent,
     PerfilComponent,
@@ -31,12 +33,14 @@ import { UsuariosComponent } from './mantenedores/usuarios/usuarios.component';
     PostsComponent,
     AboutComponent,
     PostComponent,
-    PagesComponent
+    PagesComponent,
+    ModalImagenComponent,
   ], 
   imports: [
     CommonModule,
     SharedModule,
     RouterModule,
+    FormsModule,
     ReactiveFormsModule
   ]
 })

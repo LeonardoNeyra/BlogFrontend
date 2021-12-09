@@ -3,8 +3,16 @@
     width: 100px;
 }
 
+.w140 {
+    width: 140px;
+}
+
 .avatar {
     width: 25px;
     border-radius: 100%;
     border: 1px solid grey;
+}
+
+.cursor {
+    cursor: pointer;
 }

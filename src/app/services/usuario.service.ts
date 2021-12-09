@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, delay, map, tap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { CargarUsuario } from '../interfaces/cargar-usuarios.interface';
@@ -142,11 +142,7 @@ export class UsuarioService {
       rol: this.usuario.rol
     }
     
-    return this.http.put(`${base_url}/usuarios/${this.uid}`, data, {
-      headers: {
-        'x-token': this.token
-      }
-    });
+    return this.http.put(`${base_url}/usuarios/${this.uid}`, data, this.headers);
 
   }
 
@@ -156,9 +152,10 @@ export class UsuarioService {
 
     return this.http.get<CargarUsuario>(url, this.headers)
       .pipe(
+        // delay(500),
         map( resp => {
           const usuarios = resp.usuarios
-            .map(user => new Usuario(user.nombre, user.alias, user.email, user.google, '', true, user.fechaCrea, '', user.img, user.uid));
+            .map(user => new Usuario(user.nombre, user.alias, user.email, user.google, user.rol, true, user.fechaCrea, '', user.img, user.uid));
           
           return {
             total: resp.total,
@@ -166,5 +163,20 @@ export class UsuarioService {
           };
         })
       )
+  }
+ 
+  // Eliminar usuario
+  eliminarUsuario( usuario: Usuario ) {
+    const url = `${base_url}/usuarios/${usuario.uid}`;
+
+    return this.http.delete(url, this.headers);
+
+  }
+
+  // Actualizar un usuario desde el CRUD
+  actualizarUsuario( usuario: Usuario ) {
+
+    return this.http.put(`${base_url}/usuarios/${usuario.uid}`, usuario, this.headers);
+
   }
 }
