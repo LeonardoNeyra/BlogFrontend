@@ -1,0 +1,74 @@
+<div class="sidebar">
+    <div class="logo-details">
+        <!-- <i class="fas fa-blog"></i> -->
+        <span class="logo_name">The King Team</span>
+    </div>
+    <ul class="nav-links">
+        <li *ngFor="let item of menu" [ngClass]="showMenu ? 'showMenu': ''" #li_sidebar>
+            <a *ngIf="item.submenu.length == 0" [routerLink]="item.url">
+                <i [class]="item.icono"></i>
+                <span class="link_name"> {{item.titulo}} </span>
+            </a>
+            
+            <div *ngIf="item.submenu.length > 0">
+                <div class="iocn-link">
+                    <a>
+                        <i [class]="item.icono"></i>
+                        <span class="link_name"> {{item.titulo}} </span>
+                    </a>
+                    <i class="fas fa-chevron-down arrow" (click)="abrirSubMenu(li_sidebar)"></i>
+                </div>
+                <ul class="sub-menu">
+                    <li *ngFor="let submenuitem of item.submenu">
+                        <a class="link_name" [routerLink]="submenuitem.url">{{submenuitem.titulo}}</a>
+                    </li>
+                </ul>
+            </div>
+
+        </li>
+        
+        <!-- <li>
+            <a href="#">
+                <i class="fas fa-igloo"></i>
+                <span class="link_name">Inicio</span>
+            </a>
+        </li>
+        <li>
+            <div class="iocn-link">
+                <a href="#">
+                    <i class="fas fa-hammer"></i>
+                    <span class="link_name">CRUD</span>
+                </a>
+                <i class="fas fa-chevron-down arrow"></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="#">Usuarios</a></li>
+                <li><a href="#">Posts</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-tachometer-alt"></i>
+                <span class="link_name">Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-cogs"></i>
+                <span class="link_name">Setting</span>
+            </a>
+        </li> -->
+        <li>
+            <div class="profile-details">
+                <div class="profile-content">
+                    <img [src]="usuario.imagenUrl" alt="profileImg">
+                </div>
+                <div class="name-job">
+                    <div class="profile_name">{{ usuario.nombre.split(' ')[0] }}</div>
+                    <div class="job">{{ usuario.email | slice:0:13 }}{{ (usuario.email.length > 13 ? '...' : '') }}</div>
+                </div>
+                <i class="fas fa-sign-out-alt"></i>
+            </div>
+        </li>
+    </ul>
+</div>

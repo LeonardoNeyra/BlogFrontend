@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 
 
@@ -11,10 +13,13 @@ import { FooterComponent } from './footer/footer.component';
   declarations: [
     NavbarComponent,
     FooterComponent,
+    SidebarComponent,
+    BreadcrumbComponent,
   ],
   exports: [
     NavbarComponent,
     FooterComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,

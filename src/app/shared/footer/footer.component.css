@@ -3,6 +3,7 @@ footer {
     text-align: center;
     display: -webkit-flex;
     display: flex;
+    position: relative;
 }
 
 footer a {

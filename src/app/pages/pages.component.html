@@ -1,12 +1,24 @@
 <div id="main-wrapper">
-  <app-navbar></app-navbar>
-  <app-jumbotron [titulo]='title' [subtitulo]='subtitle'></app-jumbotron>
-  
-  <div class="main main-raised">
-    <router-outlet></router-outlet>
+  <!-- <app-navbar></app-navbar> -->
+  <app-sidebar></app-sidebar>
+
+  <div class="home-section">
+    <div class="home-content2">
+      <!-- <i class="fas fa-bars bx-menu"></i> -->
+      <!-- <span class="text">Dropdown side bar</span> -->
+      
+      <app-jumbotron [titulo]='title' [subtitulo]='subtitle'></app-jumbotron>
+      
+      <div class="main main-raised">
+        <router-outlet></router-outlet>
+      </div>
+      
+      <app-footer></app-footer>
+
+    </div>
   </div>
+
   
-  <app-footer></app-footer>
 </div>
 
 <app-modal-imagen></app-modal-imagen>

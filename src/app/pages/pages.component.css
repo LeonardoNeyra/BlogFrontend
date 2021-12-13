@@ -1,11 +1,49 @@
 .main-raised {
-    margin: -60px 30px 100px;
-    border-radius: 6px;
-    box-shadow: 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+  margin: -60px 30px 50px;
+  border-radius: 6px;
+  box-shadow: 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%),
+    0 8px 10px -5px rgb(0 0 0 / 20%);
 }
 
 .main {
-    background: #ffffff;
-    position: relative;
-    z-index: 1;
+  background: #ffffff;
+  position: relative;
+  z-index: 1;
 }
+
+/*
+* Home section
+*/
+
+.home-section {
+  position: relative;
+  /* background: #e4e9f7; */
+  /* height: 100vh; */
+  left: 260px;
+  width: calc(100% - 260px);
+  transition: all 0.5s ease;
+}
+
+.sidebar.close ~ .home-section {
+  left: 78px;
+  width: calc(100% - 78px);
+}
+
+/* .home-section .home-content {
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+.home-section .home-content .bx-menu,
+.home-section .home-content .text {
+  color: #11101d;
+  font-size: 35px;
+}
+.home-section .home-content .bx-menu {
+  margin: 0 15px;
+  cursor: pointer;
+}
+.home-section .home-content .text {
+  font-size: 26px;
+  font-weight: 600;
+} */

@@ -68,7 +68,11 @@ a.a-list {
   transition: all 0.3s;
 }
 
-.list-item-dropdown:hover .dropdown-content {
+.dropdown-content-opc {
+  right: 15%;
+}
+
+.list-item-dropdown:hover .dropdown-content, .list-item-dropdown:hover .dropdown-content-opc {
   visibility: visible;
 }
 
