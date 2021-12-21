@@ -12,7 +12,9 @@ import { SharedModule } from '../shared/shared.module';
 import { PerfilComponent } from './perfil/perfil.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsuariosComponent } from './mantenedores/usuarios/usuarios.component';
+import { PostsComponent as PostsCrudComponent  } from './mantenedores/posts/posts.component';
 import { ModalImagenComponent } from '../component/modal-imagen/modal-imagen.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 
 
@@ -26,7 +28,8 @@ import { ModalImagenComponent } from '../component/modal-imagen/modal-imagen.com
     PostComponent,
     PagesComponent,
     PerfilComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    PostsCrudComponent
   ],
   exports: [
     CudComponent,
@@ -41,7 +44,8 @@ import { ModalImagenComponent } from '../component/modal-imagen/modal-imagen.com
     SharedModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PipesModule
   ]
 })
 export class PagesModule { }

@@ -4,10 +4,11 @@ import { AuthGuard } from '../guards/auth.guard';
 import { PagesComponent } from './pages.component';
 import { PostsComponent } from './posts/posts.component';
 import { AboutComponent } from './about/about.component';
-import { PostComponent } from './post/post.component';
+// import { PostComponent } from './post/post.component';
 import { CudComponent } from './cud/cud.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { UsuariosComponent } from './mantenedores/usuarios/usuarios.component';
+import { PostsComponent as PostCrudComponent } from './mantenedores/posts/posts.component';
 
 
 const routes: Routes = [
@@ -19,11 +20,11 @@ const routes: Routes = [
             { path: '', redirectTo: '/home', pathMatch: 'full' },
             { path: 'home',  component: PostsComponent, data: { titulo: 'Home' } },
             { path: 'about',  component: AboutComponent, data: { titulo: 'Nosotros' } },
-            { path: 'home/posts', component: PostComponent },
             { path: 'dashboard', component: CudComponent },
             { path: 'perfil', component: PerfilComponent, data: { titulo: 'Perfil'} },
             // Mantenedores
             { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Usuarios CRUD'} },
+            { path: 'home/posts', component: PostCrudComponent, data: { titulo: 'Posts CRUD'} },
         ]
     }
 ];

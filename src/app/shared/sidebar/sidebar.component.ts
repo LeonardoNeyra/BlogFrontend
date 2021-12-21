@@ -20,7 +20,7 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log( this.elRef.nativeElement );
+    // console.log( this.elRef.nativeElement );
   }
 
   abrirSubMenu( input: HTMLLIElement ) {
