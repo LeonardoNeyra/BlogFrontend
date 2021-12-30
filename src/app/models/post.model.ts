@@ -11,10 +11,10 @@ interface _Usuario {
 export class Post {
 
     constructor (
-        public _id: string,
+        public id: string,
         public titulo: string,
         public cuerpo: string,
-        public nComentarios: number,
+        public nComentarios: number = 1,
         public nLikes: number,
         public activo: boolean,
         public fechaCrea: Date,

@@ -1,1 +1,126 @@
-<p>post works!</p>
+<div style="padding: 40px;" >
+
+    <div class="row animated fadeIn" *ngIf="cargando">
+        <div class="col-12">
+            <div class="alert alert-info text-center" role="alert">
+              <h4 class="alert-heading">Cargando Post</h4>
+              <i class="fa fa-spin fa-refresh fa-2x"></i>
+              <p class="mb-0">Por favor espere</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="!cargando">
+        <!--  -->
+        <div class="row">
+            <div class="col-12">
+                <h1>{{ post.titulo }}</h1>
+                <h5>By: {{ post.usuario.nombre }}</h5>
+            </div>
+        </div>
+    
+        <hr>
+    
+        <div class="row">
+            <div class="col-12">
+                <p>
+                    {{ post.cuerpo }}
+                    <a href="https://drive.google.com/drive/folders/1jEBfTJBnHcQz5yWhVaD36BeLHfk6cKUr?usp=sharing" rel="nofollow" target="_blank">🌙</a>
+                </p>
+            </div>
+        </div>
+    
+        <hr>
+    </div>
+
+    <div class="row"  *ngIf="!cargandoComentarios">
+        <div class="col-12">
+            <h3>Comentarios ({{ nComentarios }}) 💬</h3>
+        </div>
+    </div>
+
+    <div class="row animated fadeIn" *ngIf="cargandoComentarios">
+        <div class="col-12">
+            <div class="alert alert-info text-center" role="alert">
+              <h4 class="alert-heading">Cargando Comentarios</h4>
+              <i class="fa fa-spin fa-refresh fa-2x"></i>
+              <p class="mb-0">Por favor espere</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- https://www.bootdey.com/snippets/view/blog-comments -->
+    <div class="row" style="padding-top: 20px;" class="fadeIn" *ngIf="!cargandoComentarios">
+        <div class="col-12">
+            
+            <div class="blog-comment">
+
+                <ul class="comments">
+                    <li class="clearfix" *ngFor="let comentario of comentarios">
+                        <img [src]="comentario.usuario.img | imagen: 'usuarios' " class="avatar" [alt]="comentario.usuario.alias">
+                        <div class="post-comments">
+                            <p class="meta">{{ comentario.fechaCrea | date: "dd-MM-yyyy h:mm a" }} <span>{{ comentario.usuario.alias }}</span> dice: 
+                                <i class="pull-right">
+                                    <a class="cursor" (click)="showHideComentarioHijo(comentario.id, 1)"><small>¿?</small></a>
+                                </i>
+                                <i class="pull-right fas fa-trash-alt" style="margin-right: 5px; color: red;"></i>
+                            </p>
+                            
+                            <p>{{ comentario.descripcion }}</p>
+                        </div>
+    
+                        <ul class="comments">
+                            <li class="clearfix" *ngFor="let respuesta of comentario.respuestas">
+                                <img [src]="respuesta.usuario.img | imagen: 'usuarios' " class="avatar" [alt]="respuesta.usuario.alias">
+                                <div class="post-comments">
+                                    <p class="meta">{{ respuesta.fechaCrea | date: "dd-MM-yyyy h:mm a" }} <span>{{ respuesta.usuario.alias }}</span> dice: </p>
+                                    <p>
+                                        {{ respuesta.descripcion }}
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="clearfix fadeIn" [id]="'ch_' + comentario.id" style="display: none;">
+                                <img src="https://bootdey.com/img/Content/user_3.jpg" class="avatar" alt="">
+                                <div class="post-comments">
+                                    <textarea class="form-control" placeholder="Escribe un comentario" [id]="'ta_' + comentario.id"></textarea>
+                                    <button class="btn btn-primary" style="margin-right: 4px;" (click)="crearComentarioHijo(post, comentario)">
+                                        <i class="far fa-comment-dots"></i> Publicar
+                                    </button> 
+                                    <button class="btn btn-danger" (click)="showHideComentarioHijo(comentario.id, 2)">
+                                        <i class="fas fa-comment-slash"></i> Cancelar
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-12">
+
+            <div class="row">
+                <div class="col-12">
+                    <textarea class="form-control" rows="3" placeholder="Escribe un comentario" #nuevoComentario ></textarea>
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="col-12">
+                    <button class="btn btn-primary" (click)="crearComentario(post)">
+                        <i class="far fa-comment-dots"></i> Publicar
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+</div>

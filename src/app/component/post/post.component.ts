@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
 
+  @Input() id:string = "";
   @Input() titulo:string = "Sin título :c";
   @Input() autor:string = "Stephanie Giss";
   @Input() cuerpo:string = "No hay texto uwu";

@@ -67,7 +67,7 @@
                     <div class="profile_name">{{ usuario.nombre.split(' ')[0] }}</div>
                     <div class="job">{{ usuario.email | slice:0:13 }}{{ (usuario.email.length > 13 ? '...' : '') }}</div>
                 </div>
-                <i class="fas fa-sign-out-alt"></i>
+                <i class="fas fa-sign-out-alt" (click)="logout()"></i>
             </div>
         </li>
     </ul>

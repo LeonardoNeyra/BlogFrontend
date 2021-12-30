@@ -27,4 +27,8 @@ export class SidebarComponent implements OnInit {
     input.classList.toggle("showMenu");
   }
 
+  logout() {
+    this.usuarioService.logout();
+  }
+
 }

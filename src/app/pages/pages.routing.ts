@@ -4,7 +4,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { PagesComponent } from './pages.component';
 import { PostsComponent } from './posts/posts.component';
 import { AboutComponent } from './about/about.component';
-// import { PostComponent } from './post/post.component';
+import { PostComponent } from './post/post.component';
 import { CudComponent } from './cud/cud.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { UsuariosComponent } from './mantenedores/usuarios/usuarios.component';
@@ -20,6 +20,7 @@ const routes: Routes = [
             { path: '', redirectTo: '/home', pathMatch: 'full' },
             { path: 'home',  component: PostsComponent, data: { titulo: 'Home' } },
             { path: 'about',  component: AboutComponent, data: { titulo: 'Nosotros' } },
+            { path: 'post/:id',  component: PostComponent, data: { titulo: 'Post' } },
             { path: 'dashboard', component: CudComponent },
             { path: 'perfil', component: PerfilComponent, data: { titulo: 'Perfil'} },
             // Mantenedores

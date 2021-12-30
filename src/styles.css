@@ -16,3 +16,7 @@
 .cursor {
     cursor: pointer;
 }
+
+.text-right {
+    float: right;
+}

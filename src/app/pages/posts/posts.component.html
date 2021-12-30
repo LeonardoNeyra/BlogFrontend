@@ -1,11 +1,12 @@
 <div class="p-2" *ngFor="let post of postsItems">
     <app-post 
+        [id]='post.id'
         [titulo]='post.titulo'
         [cuerpo]='post.cuerpo'
-        [autor]='post.autor'
-        [fecha]='post.fecha'
-        [n_comentarios]='post.comentarios'
-        [n_favoritos]='post.favoritos'
+        [autor]='post.usuario.nombre'
+        [fecha]='post.fechaCrea'
+        [n_comentarios]='post.nComentarios'
+        [n_favoritos]='post.nLikes'
         [tags]='post.tags'
     ></app-post>
 </div>

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Post } from '../models/post.model';
 import { Usuario } from '../models/usuario.model';
 
 const base_url = environment.base_url;
@@ -27,13 +28,16 @@ export class BusquedasService {
   }
 
   private transformarUsuarios( resultados: any ): Usuario[] {
-
     return resultados.map(
       user => new Usuario(user.nombre, user.alias, user.email, user.google, '', true, user.fechaCrea, '', user.img, user.uid)
     );
   }
 
-  buscar( tipo: 'usuarios'|'post'|'comentarios', termino: string = '' ) {
+  private transformarPosts( resultados: any ): Post[] {
+    return resultados;
+  }
+
+  buscar( tipo: 'usuarios'|'posts'|'comentarios', termino: string = '' ) {
     
     const url = `${base_url}/todo/coleccion/${tipo}/${termino}`;
 
@@ -43,7 +47,10 @@ export class BusquedasService {
           switch (tipo) {
             case 'usuarios':
               return this.transformarUsuarios( resp.resultados );
-          
+            
+            case 'posts':
+              return this.transformarPosts( resp.resultados );
+
             default:
               return [];
           }
