@@ -53,4 +53,16 @@ export class ComentarioService {
     }
   }
 
+  eliminarComentario( comentarioId: string ) {
+    const url = `${base_url}/comentarios/${comentarioId}`
+
+    return this.http.delete(url, this.headers);
+  }
+
+  actualizarComentario( comentarioId: string, nuevoComentario: string ) {
+    const url = `${base_url}/comentarios/${comentarioId}`
+
+    return this.http.put<{ok: boolean, comentario: Comentario}>(url, { descripcion: nuevoComentario }, this.headers);
+  }
+
 }
