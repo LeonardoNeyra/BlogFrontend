@@ -19,8 +19,20 @@
     <div class="row" *ngIf="!cargando">
 
         <div class="row">
+            <div class="col-10">
+                <div class="post-favorito">
+                    <h1>{{ post.titulo }}</h1>
+                </div>
+            </div>
+            <div class="col-2">
+                <button type="button" class="pull-right btn-sm btn-favorito" data-bs-toggle="tooltip" data-bs-placement="left" title="Agrega a favoritos" (click)="agregarFavoritos(post.id)">
+                    <i class="fas fa-star"></i> Favorito
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-12">
-                <h1>{{ post.titulo }}</h1>
                 <h5>By: {{ post.usuario.nombre }}</h5>
             </div>
         </div>
@@ -70,7 +82,7 @@
                                     {{ comentario.fechaCrea | date: "dd-MM-yyyy h:mm a" }} <span>{{ comentario.usuario.alias }}</span> dice: 
                                 </p>
                                 <div class="pull-right col-4 meta" *ngIf="comentario.usuario._id == usuarioId">
-                                    <button class="pull-right btn btn-sm btn-outline-danger" (click)="eliminarComentario(comentario.id)">
+                                    <button class="pull-right btn btn-sm btn-outline-danger" (click)="eliminarComentario(comentario.id, post.id)">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                     <button class="pull-right btn btn-sm btn-outline-warning" (click)="showHideModificarComentario(comentario.id, 1)">

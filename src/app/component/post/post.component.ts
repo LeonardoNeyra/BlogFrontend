@@ -10,6 +10,7 @@ export class PostComponent implements OnInit {
   @Input() id:string = "";
   @Input() titulo:string = "Sin título :c";
   @Input() autor:string = "Stephanie Giss";
+  @Input() img:string = "no-image";
   @Input() cuerpo:string = "No hay texto uwu";
   @Input() fecha:Date = new Date();
   @Input() n_comentarios:number = 0;

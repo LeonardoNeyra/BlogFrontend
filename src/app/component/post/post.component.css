@@ -35,13 +35,15 @@
 
 /* Header */
 .blog-author--no-cover {
-    margin: 0 auto;
+    margin: 10px auto;
     padding-top: 0.125rem;
     width: 80%;
+    display: flex;
+    flex-direction: row;
 }
 
-.blog-author--no-cover h3::before {
-    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/17779/russ.jpeg");
+.blog-author--no-cover img {
+    /* background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/17779/russ.jpeg"); */
     background-size: cover;
     border-radius: 50%;
     content: " ";
@@ -49,7 +51,7 @@
     height: 32px;
     margin-right: 0.5rem;
     position: relative;
-    top: 8px;
+    /* top: 8px; */
     width: 32px;
 }
 

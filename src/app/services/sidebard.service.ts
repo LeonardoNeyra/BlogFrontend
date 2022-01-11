@@ -36,9 +36,9 @@ export class SidebardService {
       submenu: []
     },
     {
-      titulo: 'Settings',
+      titulo: 'Ajustes & Perfil',
       icono: 'fas fa-cogs',
-      url: '/',
+      url: '/perfil',
       submenu: []
     },
   ];

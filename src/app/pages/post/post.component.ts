@@ -121,6 +121,7 @@ export class PostComponent implements OnInit {
         this.comentarioService.eliminarComentario(comentarioId)
           .subscribe(resp => {
             console.log(resp);
+            console.log(postId);
             this.cargarComentarios(postId);
           });
         
@@ -169,5 +170,9 @@ export class PostComponent implements OnInit {
         });
     }
     
+  }
+
+  agregarFavoritos( postId: string ) {
+    console.log(postId);
   }
 }

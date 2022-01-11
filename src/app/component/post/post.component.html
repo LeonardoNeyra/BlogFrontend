@@ -16,7 +16,10 @@
       
         <div class="blog-header">
           <div class="blog-author--no-cover">
-              <h3>{{ autor }}</h3>
+            <div>
+              <img [src]="img | imagen: 'usuarios' " [alt]="autor">
+            </div>
+            <h3>{{ autor }}</h3>
           </div>
         </div>
       
