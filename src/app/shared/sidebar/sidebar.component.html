@@ -4,7 +4,7 @@
         <span class="logo_name">The King Team</span>
     </div>
     <ul class="nav-links">
-        <li *ngFor="let item of menu" [ngClass]="showMenu ? 'showMenu': ''" #li_sidebar>
+        <li *ngFor="let item of sidebarService.menu" [ngClass]="showMenu ? 'showMenu': ''" #li_sidebar>
             <a *ngIf="item.submenu.length == 0" [routerLink]="item.url">
                 <i [class]="item.icono"></i>
                 <span class="link_name"> {{item.titulo}} </span>

@@ -9,7 +9,7 @@ export class Usuario {
         public alias: string,
         public email: string,
         public google: boolean,
-        public rol: string,
+        public rol: 'ADMIN_ROLE' | 'USER_ROL',
         public activo: boolean,
         public fechaCrea: Date,
         public password?: string,

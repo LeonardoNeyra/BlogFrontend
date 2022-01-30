@@ -9,6 +9,7 @@ import { CudComponent } from './cud/cud.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { UsuariosComponent } from './mantenedores/usuarios/usuarios.component';
 import { PostsComponent as PostCrudComponent } from './mantenedores/posts/posts.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 
 const routes: Routes = [
@@ -23,9 +24,9 @@ const routes: Routes = [
             { path: 'post/:id',  component: PostComponent, data: { titulo: 'Post' } },
             { path: 'dashboard', component: CudComponent },
             { path: 'perfil', component: PerfilComponent, data: { titulo: 'Perfil'} },
-            // Mantenedores
-            { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Usuarios CRUD'} },
-            { path: 'home/posts', component: PostCrudComponent, data: { titulo: 'Posts CRUD'} },
+            // Mantenedores - rutas admin
+            { path: 'usuarios', canActivate: [ AdminGuard ], component: UsuariosComponent, data: { titulo: 'Usuarios CRUD'} },
+            { path: 'home/posts', canActivate: [ AdminGuard ], component: PostCrudComponent, data: { titulo: 'Posts CRUD'} },
         ]
     }
 ];

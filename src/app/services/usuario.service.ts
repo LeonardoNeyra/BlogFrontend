@@ -32,6 +32,10 @@ export class UsuarioService {
      return localStorage.getItem('token') || '';
    }
 
+   get rol(): 'ADMIN_ROLE' | 'USER_ROL' {
+     return this.usuario.rol;
+   }
+
    get uid(): string {
      return this.usuario.uid || '';
    }
@@ -63,9 +67,15 @@ export class UsuarioService {
     })
   }
 
+  guardarLocalStorage(token: string, menu: any) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('menu', JSON.stringify(menu));
+  }
+
   // Logout
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('menu');
 
     // cerra sesión de google singin
     this.auth2.signOut().then(() => {
@@ -87,7 +97,8 @@ export class UsuarioService {
         const { activo, alias, email, fechaCrea, google, img = '', nombre, rol, uid } = resp.usuario;
 
         this.usuario = new Usuario( nombre, alias, email, google, rol, activo, fechaCrea, '', img, uid );
-        localStorage.setItem('token', resp.token);
+        
+        this.guardarLocalStorage(resp.token, resp.menu);
 
         return true;
       }),
@@ -100,7 +111,7 @@ export class UsuarioService {
     return this.http.post(`${base_url}/usuarios`, formData)
             .pipe(
               tap( (resp: any) => {
-                localStorage.setItem('token', resp.token);
+                this.guardarLocalStorage(resp.token, resp.menu);
               })
             )
   }
@@ -118,7 +129,7 @@ export class UsuarioService {
     return this.http.post(`${base_url}/login`, formData)
               .pipe(
                 tap((resp : any) => {
-                  localStorage.setItem('token', resp.token);
+                  this.guardarLocalStorage(resp.token, resp.menu);
                 })
               );
   }
@@ -129,7 +140,7 @@ export class UsuarioService {
     return this.http.post(`${base_url}/login/google`, { token })
               .pipe(
                 tap((resp : any) => {
-                  localStorage.setItem('token', resp.token);
+                  this.guardarLocalStorage(resp.token, resp.menu);
                 })
               );
   }
@@ -178,5 +189,10 @@ export class UsuarioService {
 
     return this.http.put(`${base_url}/usuarios/${usuario.uid}`, usuario, this.headers);
 
+  }
+
+  // Agregar un post favorito al usuario
+  agregarPostFavorito( postId: string ) {
+    return this.http.put(`${base_url}/usuarios/favoritos/${postId}`, this.headers);
   }
 }
